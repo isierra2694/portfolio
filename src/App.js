@@ -10,7 +10,7 @@ function App() {
 		<div id="canvas-container" style={{width:"100%", height:"100%"}}>
 			<Canvas>
 				<Suspense fallback={null}>
-					<ScrollControls>
+					<ScrollControls pages={10}>
 						<Scene />
 					</ScrollControls>
 				</Suspense>
