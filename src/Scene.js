@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Environment, OrbitControls, Stars, useScroll, ScrollControls, PerspectiveCamera } from '@react-three/drei';
 import { LayerMaterial, Color, Depth, Noise } from 'lamina';
@@ -13,20 +13,44 @@ const Scene = () => {
     const model = useRef(null);
     const camera = useRef(null);
     const skybox = useRef(null);
+	
+	const [trajectory, setTrajectory] = useState(null);
+	const initialCameraPosition = new THREE.Vector3(15, -7.1, 12);
+	const finalCameraPosition = new THREE.Vector3(-20, 0, 5);
+	
+	useEffect(() => {
+		const normal = new THREE.Vector3();
+		normal.subVectors(initialCameraPosition, finalCameraPosition);
+		normal.set(normal.y, -normal.x, 0);
 
-    useFrame(() => {
+		const tempA = new THREE.Vector3().copy(initialCameraPosition).addScaledVector(normal, 1 / 2);
+		const tempB = new THREE.Vector3().copy(finalCameraPosition).addScaledVector(normal, 1 / 2);
+
+		setTrajectory(
+			new THREE.CubicBezierCurve3(initialCameraPosition, tempA, tempB, finalCameraPosition)
+		);
+	}, []);
+
+	useFrame(() => {
         const scrollProgress = scroll.scroll.current;
-    });
+    	
+		if (trajectory && camera.current) trajectory.getPoint(scrollProgress, camera.current.position);
+		
+		const initialCameraRotation = new THREE.Euler(0.5, 0.8, 0.9);    // Initial rotation facing the ship
+        const finalCameraRotation = new THREE.Euler(Math.PI / 2, -Math.PI / 2, 0); // Final rotation facing the back of the ship
+
+        camera.current.rotation.x = THREE.MathUtils.lerp(initialCameraRotation.x, finalCameraRotation.x, scrollProgress);
+        camera.current.rotation.y = THREE.MathUtils.lerp(initialCameraRotation.y, finalCameraRotation.y, scrollProgress);
+        camera.current.rotation.z = THREE.MathUtils.lerp(initialCameraRotation.z, finalCameraRotation.z, scrollProgress);
+	});
 
     return (
         <>
-            <group ref={camera}>
-                <PerspectiveCamera makeDefault fov={60} position={[-20, 0, 0]} rotation={[0, -Math.PI / 2, 0]}/>
-            </group>
-            <Model ref={model} />
+			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
+            <Model ref={model} rotation={[Math.PI / 2, 0, 0]}/>
             <Earth position={[50, 50, -200]} rotation={[1, 2, 0]} />
             <Stars radius={50} depth={100} count={3000} factor={5} saturation={0} fade speed={1} />
-            <ambientLight color="white" intensity={0.1} />
+            <ambientLight color="white" intensity={1} />
             <directionalLight color="white" intensity={1.5} position={[0, 100, 100]} />
             <mesh scale={500} ref={skybox}>
                 <sphereGeometry args={[1, 100, 100]} />
