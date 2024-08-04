@@ -4,6 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import { Stars, useScroll, PerspectiveCamera } from '@react-three/drei';
 import { LayerMaterial, Depth, Noise } from 'lamina';
 
+import SpaceDust from './SpaceDust';
 import { Model } from './Model';
 import { Earth } from './Earth';
 
@@ -39,7 +40,8 @@ const Scene = () => {
         const p2 = scroll.range(2 / 10 , 3 / 10);
     	const p3 = scroll.range(3 / 10, 1);
 		if (trajectory && camera.current) trajectory.getPoint(p1, camera.current.position);
-
+		
+		model.current.power = p2 + p3;
         model.current.position.x = (p2 * 10) + (p3 * 500);
         camera.current.lookAt(model.current.position);
 	});
@@ -47,11 +49,12 @@ const Scene = () => {
     return (
         <>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
-            <Model ref={model} rotation={[0, 0, 0]}/>
-            <Earth position={[50, 50, -200]} rotation={[1, 2, 0]} />
+			<SpaceDust count={5000} />
+			<Model ref={model} rotation={[0, 0, 0]} />
+			<Earth position={[200, 20, -100]} rotation={[1, 0, 0]} />
             <Stars radius={50} depth={100} count={3000} factor={5} saturation={0} fade speed={1} />
-            <ambientLight color="white" intensity={1} />
-            <directionalLight color="white" intensity={1.5} position={[0, 100, 100]} />
+            <ambientLight color="white" intensity={0.2} />
+            <directionalLight color="white" intensity={3} position={[0, 100, 100]} />
             <mesh scale={500} ref={skybox}>
                 <sphereGeometry args={[1, 100, 100]} />
                 <LayerMaterial side={THREE.BackSide}>
