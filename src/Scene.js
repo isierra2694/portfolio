@@ -44,6 +44,7 @@ const Scene = () => {
 		model.current.power = p2 + p3;
         model.current.position.x = (p2 * 10) + (p3 * 500);
         camera.current.lookAt(model.current.position);
+		camera.current.position.x += p3 * 500;
 	});
 
     return (
