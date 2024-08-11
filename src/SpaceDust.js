@@ -3,9 +3,11 @@ import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import Random from 'canvas-sketch-util/random';
 
-export default function SpaceDust({ count }) {
-	const mesh = useRef();
-	
+export default function SpaceDust({ count, ship }) {
+	const mesh1 = useRef();
+	const mesh2 = useRef();
+	const lastUpdated = useRef();
+
 	const particles = useMemo(() => {
 		const temp = [];
 		for (let i = 0; i < count; i++) {
@@ -23,6 +25,21 @@ export default function SpaceDust({ count }) {
 	const dummy = useMemo(() => new THREE.Object3D(), []);
 
   	useFrame(() => {
+		if (count === 0) return;
+		
+		const x = ship.current ? ship.current.position.x : 0;
+		
+		if (Math.round(x) % 50 === 0 && x >= 50) {
+			if (lastUpdated === 0) {
+				mesh2.current.position.x = x + 50;
+				lastUpdated.current = 1;
+			}
+			else {
+				mesh1.current.position.x = x + 50;
+				lastUpdated.current = 0;
+			}
+		}
+
     	// Run through the randomized data to calculate some movement
     	particles.forEach((particle, index) => {
       		let { factor, speed, x, y, z } = particle;
@@ -46,15 +63,23 @@ export default function SpaceDust({ count }) {
       		dummy.updateMatrix();
 
       		// And apply the matrix to the instanced item
-      		mesh.current.setMatrixAt(index, dummy.matrix);
-    	});
-    	mesh.current.instanceMatrix.needsUpdate = true;
+      		mesh1.current.setMatrixAt(index, dummy.matrix);
+    		mesh2.current.setMatrixAt(index, dummy.matrix);
+		});
+    	mesh1.current.instanceMatrix.needsUpdate = true;
+		mesh2.current.instanceMatrix.needsUpdate = true;
   	});
 
 	return (
-		<instancedMesh ref={mesh} args={[null, null, count]}>
-			<dodecahedronGeometry args={[0.2, 0]} />
-			<meshPhongMaterial />
-		</instancedMesh>
+		<group>
+			<instancedMesh ref={mesh1} args={[null, null, count]}>
+				<tetrahedronGeometry args={[0.2, 0]} />
+				<meshPhongMaterial />
+			</instancedMesh>
+			<instancedMesh ref={mesh2} position={[50, 0, 0]} args={[null, null, count]}>
+				<tetrahedronGeometry args={[0.2, 0]} />
+				<meshPhongMaterial />
+			</instancedMesh>
+		</group>
 	);
 }
