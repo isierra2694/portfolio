@@ -53,7 +53,7 @@ const Scene = () => {
         <>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
 			<AsteroidField count={100} />
-			<SpaceDust count={2000} ship={ship} />
+			<SpaceDust count={1000} ship={ship} />
 			<Model ref={ship} rotation={[0, 0, 0]} />
 			<Earth position={[200, 20, -100]} rotation={[1, 0, 0]} />
             <ambientLight color="white" intensity={0.2} />

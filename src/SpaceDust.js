@@ -6,7 +6,7 @@ import Random from 'canvas-sketch-util/random';
 export default function SpaceDust({ count, ship }) {
 	const mesh1 = useRef();
 	const mesh2 = useRef();
-	const lastUpdated = useRef();
+	const lastUpdated = useRef(0);
 
 	const particles = useMemo(() => {
 		const temp = [];
@@ -27,17 +27,16 @@ export default function SpaceDust({ count, ship }) {
   	useFrame(() => {
 		if (count === 0) return;
 		
-		const x = ship.current ? ship.current.position.x : 0;
+		const x = Math.round(ship.current ? ship.current.position.x : 0);
 		
-		if (Math.round(x) % 50 === 0 && x >= 50) {
-			if (lastUpdated === 0) {
+		if (x % 50 === 0 && x >= 50 && lastUpdated.current !== x) {
+			if ((lastUpdated.current / 100) % 1 === 0) {
 				mesh2.current.position.x = x + 50;
-				lastUpdated.current = 1;
 			}
 			else {
 				mesh1.current.position.x = x + 50;
-				lastUpdated.current = 0;
 			}
+			lastUpdated.current = x;
 		}
 
     	// Run through the randomized data to calculate some movement
@@ -73,11 +72,11 @@ export default function SpaceDust({ count, ship }) {
 	return (
 		<group>
 			<instancedMesh ref={mesh1} args={[null, null, count]}>
-				<tetrahedronGeometry args={[0.2, 0]} />
+				<tetrahedronGeometry args={[0.4, 0]} />
 				<meshPhongMaterial />
 			</instancedMesh>
 			<instancedMesh ref={mesh2} position={[50, 0, 0]} args={[null, null, count]}>
-				<tetrahedronGeometry args={[0.2, 0]} />
+				<tetrahedronGeometry args={[0.4, 0]} />
 				<meshPhongMaterial />
 			</instancedMesh>
 		</group>
