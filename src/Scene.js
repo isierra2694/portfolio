@@ -4,10 +4,10 @@ import { useFrame } from '@react-three/fiber';
 import { Stars, useScroll, PerspectiveCamera } from '@react-three/drei';
 import { LayerMaterial, Depth, Noise } from 'lamina';
 
-import SpaceDust from './SpaceDust';
-import AsteroidField from './AsteroidField';
-import { Model } from './Model';
-import { Earth } from './Earth';
+import SpaceDust from './objects/SpaceDust';
+import AsteroidField from './objects/AsteroidField';
+import { Ship } from './objects/Ship';
+import { Earth } from './objects/Earth';
 
 const Scene = () => {
     const scroll = useScroll();
@@ -45,8 +45,8 @@ const Scene = () => {
 		ship.current.power = p2 + p3;
         ship.current.position.x = (p2 * 10) + (p3 * 500);
         skybox.current.position.x = (p2 * 10) + (p3 * 500);
-		ship.current.position.y = (p4 * 10);
-        ship.current.rotation.z = (p4);
+		ship.current.position.y = (p4 * 100);
+        ship.current.rotation.z = (p4 * 5);
         camera.current.lookAt(ship.current.position);
 		camera.current.position.x += p3 * 500;
 	});
@@ -56,7 +56,7 @@ const Scene = () => {
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
 			<AsteroidField count={100} />
 			<SpaceDust count={500} ship={ship} />
-			<Model ref={ship} rotation={[0, 0, 0]} />
+			<Ship ref={ship} rotation={[0, 0, 0]} />
 			<Earth position={[200, 20, -100]} rotation={[1, 0, 0]} />
             <ambientLight color="white" intensity={0.2} />
             <directionalLight color="white" intensity={3} position={[0, 100, 100]} />

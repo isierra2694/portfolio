@@ -1,9 +1,9 @@
-import React, { useRef, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 import Thruster from './Thruster';
 
-export const Model = forwardRef(({ ...props }, ref) => {
+export const Ship = forwardRef(({ ...props }, ref) => {
 	const { nodes, materials } = useGLTF('/ship.glb')
   	return (
     	<group ref={ref} {...props} dispose={null}>

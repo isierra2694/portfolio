@@ -22,7 +22,7 @@ export default function Thruster({ count, radius, speed, scale, position, rotati
 			temp.push({ time, x, y, z });
 		}
 		return temp;
-	}, [count]);
+	}, [count, radius]);
 
 	const dummy = useMemo(() => new THREE.Object3D(), []);
 
