@@ -35,17 +35,19 @@ const Scene = () => {
 	}, []);
 
 	useFrame(() => {
-        const scrollProgress = scroll.scroll.current;
+        const p1 = scroll.range(0 / 15, 2 / 15);
+        const p2 = scroll.range(2 / 15 , 3 / 15);
+    	const p3 = scroll.range(3 / 15, 10 / 15);
+        const p4 = scroll.range(10 / 15, 1);
 
-        const p1 = scroll.range(0 / 10, 2 / 10);
-        const p2 = scroll.range(2 / 10 , 3 / 10);
-    	const p3 = scroll.range(3 / 10, 1);
 		if (trajectory && camera.current) trajectory.getPoint(p1, camera.current.position);
 		
 		ship.current.power = p2 + p3;
         ship.current.position.x = (p2 * 10) + (p3 * 500);
         skybox.current.position.x = (p2 * 10) + (p3 * 500);
-		camera.current.lookAt(ship.current.position);
+		ship.current.position.y = (p4 * 10);
+        ship.current.rotation.z = (p4);
+        camera.current.lookAt(ship.current.position);
 		camera.current.position.x += p3 * 500;
 	});
 
@@ -53,7 +55,7 @@ const Scene = () => {
         <>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
 			<AsteroidField count={100} />
-			<SpaceDust count={1000} ship={ship} />
+			<SpaceDust count={500} ship={ship} />
 			<Model ref={ship} rotation={[0, 0, 0]} />
 			<Earth position={[200, 20, -100]} rotation={[1, 0, 0]} />
             <ambientLight color="white" intensity={0.2} />
