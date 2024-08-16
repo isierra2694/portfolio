@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { useRef, useEffect, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Stars, useScroll, PerspectiveCamera } from '@react-three/drei';
+import { Stars, useScroll, PerspectiveCamera, Scroll } from '@react-three/drei';
 import { LayerMaterial, Depth, Noise } from 'lamina';
 
 import SpaceDust from './objects/SpaceDust';
@@ -14,9 +14,9 @@ const Scene = () => {
     const ship = useRef(null);
     const camera = useRef(null);
     const skybox = useRef(null);
-	
-	const [trajectory, setTrajectory] = useState(null);
-	
+	const hero = useRef(null);
+
+	const [trajectory, setTrajectory] = useState(null);	
 	
 	useEffect(() => {
         const initialCameraPosition = new THREE.Vector3(15, 8, 6);
@@ -39,7 +39,7 @@ const Scene = () => {
         const p2 = scroll.range(2 / 15 , 3 / 15);
     	const p3 = scroll.range(3 / 15, 10 / 15);
         const p4 = scroll.range(10 / 15, 1);
-
+		
 		if (trajectory && camera.current) trajectory.getPoint(p1, camera.current.position);
 		
 		ship.current.power = p2 + p3;
@@ -58,7 +58,14 @@ const Scene = () => {
 			<SpaceDust count={500} ship={ship} />
 			<Ship ref={ship} rotation={[0, 0, 0]} />
 			<Earth position={[200, 20, -100]} rotation={[1, 0, 0]} />
-            <ambientLight color="white" intensity={0.2} />
+			<Scroll html style={{width:"100%", height:"100%"}}>
+				<div className="wrapper">
+					<div className="home-hero-container" ref={hero}>
+						<h1 className="home-hero-name-label">Hello!</h1>
+					</div>
+				</div>
+			</Scroll>
+			<ambientLight color="white" intensity={0.2} />
             <directionalLight color="white" intensity={3} position={[0, 100, 100]} />
 			<group ref={skybox}>
             	<Stars radius={50} depth={100} count={3000} factor={5} saturation={0} fade speed={1} />

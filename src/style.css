@@ -9,27 +9,28 @@ html, body {
 	width: 100%;
 }
 
-#content-container {
-	z-index: 100;
-	position: absolute;
-	pointer-events: none;
-	display: block;
-	top: 0;
-	left: 0;
+.content-container {
 	height: 100%;
 	width: 100%;
+}
+
+.wrapper {
+	height: 100%;
 	color: white;
 	font-family: "JetBrains Mono", monospace;
 }
 
 .home-hero-container {
+	height: 100%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 	align-items: center;
 	justify-content: center;
 }
 
 .home-hero-name-label {
 	margin: 0 auto;
+	position: fixed;
+	font-size: 64px;
 }
