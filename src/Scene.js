@@ -1,8 +1,10 @@
 import * as THREE from 'three';
 import { useRef, useEffect, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Stars, useScroll, PerspectiveCamera, Scroll } from '@react-three/drei';
+import { Stars, useScroll, PerspectiveCamera } from '@react-three/drei';
 import { LayerMaterial, Depth, Noise } from 'lamina';
+import FixedScrollHtml from './util/FixedScrollHtml';
+import Home from './Home';
 
 import SpaceDust from './objects/SpaceDust';
 import AsteroidField from './objects/AsteroidField';
@@ -14,7 +16,6 @@ const Scene = () => {
     const ship = useRef(null);
     const camera = useRef(null);
     const skybox = useRef(null);
-	const hero = useRef(null);
 
 	const [trajectory, setTrajectory] = useState(null);	
 	
@@ -49,22 +50,19 @@ const Scene = () => {
         ship.current.rotation.z = (p4 * 5);
         camera.current.lookAt(ship.current.position);
 		camera.current.position.x += p3 * 500;
+		
 	});
 
     return (
         <>
+			<FixedScrollHtml fixedUntil={0.5} style={{width:"100%", height:"100%"}}>
+				<Home />
+			</FixedScrollHtml>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
 			<AsteroidField count={100} />
 			<SpaceDust count={500} ship={ship} />
 			<Ship ref={ship} rotation={[0, 0, 0]} />
 			<Earth position={[200, 20, -100]} rotation={[1, 0, 0]} />
-			<Scroll html style={{width:"100%", height:"100%"}}>
-				<div className="wrapper">
-					<div className="home-hero-container" ref={hero}>
-						<h1 className="home-hero-name-label">Hello!</h1>
-					</div>
-				</div>
-			</Scroll>
 			<ambientLight color="white" intensity={0.2} />
             <directionalLight color="white" intensity={3} position={[0, 100, 100]} />
 			<group ref={skybox}>
