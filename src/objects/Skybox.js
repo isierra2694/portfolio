@@ -13,7 +13,7 @@ export default function Skybox({ innerRef }) {
 				<sphereGeometry args={[1, 100, 100]} />
 				<LayerMaterial side={THREE.BackSide}>
 					<Noise colorA="#0a0b47" colorB="#0b0c26" colorC="#071442" colorD="#0e0f47" alpha={1} scale={0.7} offset={[0, 0, 0]} />
-					<Depth colorA="black" colorB="black" alpha={0.2} mode="normal" near={0} far={300} origin={[100, 100, 100]} />
+					<Depth colorA="black" colorB="black" alpha={0.6} mode="normal" near={0} far={300} origin={[100, 100, 100]} />
 				</LayerMaterial>
 			</mesh>
 		</group>

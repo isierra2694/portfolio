@@ -64,7 +64,7 @@ const Scene = () => {
 			<AsteroidField count={100} />
 			<SpaceDust count={500} ship={ship} />
 			<Ship ref={ship} rotation={[0, 0, 0]} />
-			<ambientLight color="white" intensity={0.1} />
+			<ambientLight color="white" intensity={0.05} />
             <directionalLight color="white" intensity={3} position={[0, 100, 100]} />
         	<Skybox innerRef={skybox} />
 		</>

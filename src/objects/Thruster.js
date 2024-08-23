@@ -64,7 +64,7 @@ export default function Thruster({ count, radius, speed, scale, position, rotati
 	return (
 		<instancedMesh position={position} rotation={rotation} ref={mesh} args={[null, null, count]}>
 			<boxGeometry args={[0.2, 0.2, 0.2]} />
-			<meshBasicMaterial color="#00eeff" />
+			<meshBasicMaterial color="#6beeff" />
 		</instancedMesh>
 	);
 }
