@@ -1,11 +1,20 @@
 import React, { forwardRef } from 'react'
+import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei'
 
 import Thruster from './Thruster';
 
 export const Ship = forwardRef(({ ...props }, ref) => {
 	const { nodes, materials } = useGLTF('/ship.glb')
-  	return (
+
+	useFrame(({ clock }) => {
+		const elapsedTime = clock.getElapsedTime();
+		
+		ref.current.rotation.x = Math.sin(elapsedTime * Math.PI / 2) * (Math.PI / 50);
+		ref.current.position.y = Math.sin(elapsedTime * Math.PI / 4) * 0.5;	
+	});
+
+	return (
     	<group ref={ref} {...props} dispose={null}>
       		<group rotation={[Math.PI / 2, 0, 0]}>
        			<mesh
