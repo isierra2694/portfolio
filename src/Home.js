@@ -9,7 +9,7 @@ export default function Home() {
 			<div className="main-content-container">
 				<section className="about-container">
 					<h1>ABOUT</h1>
-					<p>I am a developer who is committed to building unique experiences.  My passion for programming flourished from my curiousity about how my favorite game worked.  Currently, I am studying software development at Whatcom Community College and I have hands-on experience with several different languages and technologies.</p>
+					<p>I am a developer who is committed to building unique experiences.  My passion for programming flourished from my curiosity about how my favorite game worked.  Currently, I am studying software development at Whatcom Community College and I have hands-on experience with several different languages and technologies.</p>
 					<a href="/resume">Check out my resume</a>
 				</section>	
 				<section className="projects-container">

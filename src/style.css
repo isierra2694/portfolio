@@ -34,10 +34,11 @@ html, body {
 	margin: 0 auto;
 	position: fixed;
 	font-size: 64px;
+	border-bottom: 3px solid white;
 }
 
 .main-content-container {
-	max-width: 1100px;
+	max-width: 1200px;
 	margin: 0 auto;
 	padding: 50px;
 	background: rgba(0, 0, 0, 0.5);
@@ -49,24 +50,26 @@ html, body {
 }
 
 .project-cards-grid {
-	max-width: 1100px;
+	max-width: 1200px;
 	margin: 0 auto;
 	display: grid;
+	row-gap: 20px;
+	column-gap: 20px;
+	justify-items: center;
 	grid-template-columns: auto auto auto;
 }
 
 .project-card {
-	width: 300px;
+	width: 390px;
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
-	background: #131313;
 	border-radius: 25px;
 	border: 1px solid rgba(107, 107, 107, 0.3);
+	box-sizing: border-box;
 }
 
 .project-card-image-container {
-	height: 200px;
+	height: 250px;
 }
 
 .project-card-title {
