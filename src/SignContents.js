@@ -1,6 +1,6 @@
 const SignContents = {
-	intro: `Exploring the universe of software development`,
-	skills: `Skilled with many different technologies`,
+	intro: `Indy Sierra\n\nDeveloper`,
+	skills: `Exploring the universe of software engineering`
 }
 
 export default SignContents;
