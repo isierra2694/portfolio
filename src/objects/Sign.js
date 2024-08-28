@@ -5,23 +5,37 @@ import { useFrame } from '@react-three/fiber';
 import Thruster from './Thruster';
 
 export function Sign(props) {
-  const { nodes, materials } = useGLTF('/sign.glb')
-  const sign = useRef(null);
-  const scroll = useScroll();
+	const { nodes, materials } = useGLTF('/sign.glb')
+	const sign = useRef(null);
+	const lastYPosition = useRef(0);
+	const scroll = useScroll();
 
-  useFrame(({ clock }) => {
+	useFrame(({ clock }) => {
 		const elapsedTime = clock.getElapsedTime();
-		
-    const additional = scroll.range(0.23, 1) * 1000;
-		sign.current.position.y = additional === 0 ? Math.sin(elapsedTime * Math.PI / 4) * 3 : additional;	
-	});
+		const additional = scroll.range(props.scrollValue, 1) * 1000;
+		const sineValue = Math.sin(elapsedTime * Math.PI / 4) * 3;
 
-  return (
+		if (additional === 0) {
+			sign.current.position.y = lastYPosition.current + (sineValue - lastYPosition.current) * 0.1;
+			lastYPosition.current = sign.current.position.y;
+		}
+		else {
+			sign.current.position.y = lastYPosition.current + (additional - lastYPosition.current) * 0.1;
+			lastYPosition.current = sign.current.position.y;
+		}	
+	});
+	
+	return (
     <group ref={sign} {...props} dispose={null}>
-      <Text font={"/signfont.ttf.ttf"} scale={[2.5, 2.5, 2.5]} position={[-0.5, 7, 0]} rotation={[0, -Math.PI / 2, 0]}>
-        { props.title }
-      </Text>
-      <Text font={"/signfont.ttf.ttf"} scale={[2.5, 2.5, 2.5]} position={[-0.5, 5, 0]} rotation={[0, -Math.PI / 2, 0]}>
+      <Text 
+		font={"/signfont.ttf.ttf"} 
+		anchorX="center"
+		anchorY="middle"
+		textAlign="center"
+		maxWidth={10}
+		scale={[2.5, 2.5, 2.5]} 
+		position={[-0.5, 3, 0]} 
+		rotation={[0, -Math.PI / 2, 0]}>
       { props.text }
       </Text>
     <group position={[0, 2.171, 0]} rotation={[-Math.PI, 0.017, -Math.PI]} scale={3.44}>

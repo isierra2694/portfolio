@@ -11,6 +11,8 @@ import { Ship } from './objects/Ship';
 import Skybox from './objects/Skybox';
 import { Sign } from './objects/Sign';
 
+import SignContents from './SignContents';
+
 const Scene = () => {
     const SHIP_SPEED = 5;
 	
@@ -62,13 +64,10 @@ const Scene = () => {
 				<Home />
 			</FixedScrollHtml>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
-			<SpaceDust count={0} ship={ship} />
-			<Sign text="
-			Exploring the 
-			universe of 
-			software 
-			engineering" position={[150, 0, 0]}/>
-			<Sign text="SKILLS" position={[300, 0, 0]}/>
+			<AsteroidField count={50} />
+			<SpaceDust count={100} ship={ship} />
+			<Sign text={SignContents.intro} scrollValue={0.235} position={[150, 0, 0]}/>
+			<Sign text={SignContents.skills} scrollValue={0.29} position={[300, 0, 0]}/>
 			<Ship ref={ship} rotation={[0, 0, 0]} />
 			<ambientLight color="white" intensity={0.05} />
             <directionalLight color="white" intensity={4} position={[0, 100, 100]} />
