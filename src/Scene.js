@@ -9,9 +9,10 @@ import SpaceDust from './objects/SpaceDust';
 import AsteroidField from './objects/AsteroidField';
 import { Ship } from './objects/Ship';
 import Skybox from './objects/Skybox';
+import { Sign } from './objects/Sign';
 
 const Scene = () => {
-    const SHIP_SPEED = 2;
+    const SHIP_SPEED = 5;
 	
 	const scroll = useScroll();
     const ship = useRef(null);
@@ -57,15 +58,20 @@ const Scene = () => {
 
     return (
         <>
-			<FixedScrollHtml fixedUntil={0.3} style={{width:"100%", height:"100%"}}>
+			<FixedScrollHtml fixedUntil={0.07} style={{width:"100%", height:"100%"}}>
 				<Home />
 			</FixedScrollHtml>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
-			<AsteroidField count={100} />
-			<SpaceDust count={500} ship={ship} />
+			<SpaceDust count={0} ship={ship} />
+			<Sign text="
+			Exploring the 
+			universe of 
+			software 
+			engineering" position={[150, 0, 0]}/>
+			<Sign text="SKILLS" position={[300, 0, 0]}/>
 			<Ship ref={ship} rotation={[0, 0, 0]} />
 			<ambientLight color="white" intensity={0.05} />
-            <directionalLight color="white" intensity={3} position={[0, 100, 100]} />
+            <directionalLight color="white" intensity={4} position={[0, 100, 100]} />
         	<Skybox innerRef={skybox} />
 		</>
     );

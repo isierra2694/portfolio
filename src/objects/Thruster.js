@@ -3,14 +3,14 @@ import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import Random from 'canvas-sketch-util/random';
 
-export default function Thruster({ count, radius, speed, scale, position, rotation }) {
+export default function Thruster({ count, radius, speed, scale, position, rotation, lifetime }) {
 	const mesh = useRef();
 
 	const particles = useMemo(() => {
 		const temp = [];
 		for (let i = 0; i < count; i++) {
 			// Slides from 0 - 100 and manages scale + z position
-			const time = Random.range(-100, 0);
+			const time = Random.range(-lifetime, 0);
 			const angle = Math.random() * 2 * Math.PI;
 			const r = Math.sqrt(Math.random()) * radius;
 
@@ -31,7 +31,7 @@ export default function Thruster({ count, radius, speed, scale, position, rotati
 			let { x, y, z } = particle;
 			
 			// Reset particle if time is up
-			if (particle.time >= 100) {
+			if (particle.time >= lifetime) {
 				particle.time = 0;
 				z = 0;
 			}

@@ -49,35 +49,19 @@ html, body {
 	border: 1px solid rgba(107, 107, 107, 0.3);
 }
 
-.project-cards-grid {
-	max-width: 1200px;
-	margin: 0 auto;
-	display: grid;
-	row-gap: 20px;
-	column-gap: 20px;
-	justify-items: center;
-	grid-template-columns: auto auto auto;
-}
-
-.project-card {
-	width: 390px;
+.home-section {
 	display: flex;
-	flex-direction: column;
-	border-radius: 25px;
-	border: 1px solid rgba(107, 107, 107, 0.3);
-	box-sizing: border-box;
+	flex-direction: row;
 }
 
-.project-card-image-container {
-	height: 250px;
+.home-section-article {
+	width: 50%;
 }
 
-.project-card-title {
-	margin: 0;
-	padding: 0;
+.home-section-display {
+	width: 50%;
 }
 
-.project-card-description {
-	margin: 0;
-	padding: 0;
+.home-section-display img {
+	width: 100%;
 }
