@@ -6,7 +6,6 @@ import FixedScrollHtml from './util/FixedScrollHtml';
 import Home from './Home';
 
 import SpaceDust from './objects/SpaceDust';
-import AsteroidField from './objects/AsteroidField';
 import { Ship } from './objects/Ship';
 import Skybox from './objects/Skybox';
 import { Sign } from './objects/Sign';
@@ -41,8 +40,8 @@ const Scene = () => {
 
 	useFrame(() => {
         const p1 = scroll.range(0 / 10, 1.5 / 10);
-        const p2 = scroll.range(1.5 / 10 , 2 / 10);
-    	const p3 = scroll.range(2 / 10, 1);
+        const p2 = scroll.range(1.5 / 10 , 2.5 / 10);
+    	const p3 = scroll.range(2.5 / 10, 1);
 		if (trajectory && camera.current) trajectory.getPoint(p1, camera.current.position);
 		
 		// Move ship forward
@@ -64,10 +63,9 @@ const Scene = () => {
 				<Home />
 			</FixedScrollHtml>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
-			<AsteroidField count={50} />
 			<SpaceDust count={100} ship={ship} />
-			<Sign text={SignContents.intro} scrollValue={0.235} position={[150, 0, 0]}/>
-			<Sign text={SignContents.skills} scrollValue={0.29} position={[300, 0, 0]}/>
+			<Sign text={SignContents.intro} scrollValue={0.31} position={[250, 0, 0]}/>
+			<Sign text={SignContents.skills} scrollValue={0.41} position={[500, 0, 0]}/>
 			<Ship ref={ship} rotation={[0, 0, 0]} />
 			<ambientLight color="white" intensity={0.05} />
             <directionalLight color="white" intensity={4} position={[0, 100, 100]} />

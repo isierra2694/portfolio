@@ -7,7 +7,7 @@ import { Earth } from './Earth';
 export default function Skybox({ innerRef }) {
 	return (
 		<group renderOrder={-1} ref={innerRef}>
-			<Earth position={[200, 20, -100]} rotation={[1, 0, 0]} />
+			<Earth position={[200, 20, -40]} rotation={[1, 0, 0]} />
 			<Stars radius={50} depth={100} count={3000} factor={5} saturation={0} fade speed={1} />
 			<mesh scale={500}>
 				<sphereGeometry args={[1, 100, 100]} />

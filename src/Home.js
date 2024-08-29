@@ -1,21 +1,26 @@
 import ProjectCard from './content/ProjectCard';
+import ShipWireframeImage from './content/ShipWireframeImage';
 
 export default function Home() {
 	return (
 		<div className="wrapper">
 			<div className="home-hero-container">
-				<h1 className="home-hero-name-label">INDY SIERRA</h1>
+				<h1 className="home-hero-name-label">SCROLL DOWN</h1>
 			</div>
 			<div className="main-content-container">
+				<div className="main-content">
 				<section className="about-container">
 					<div className="about-text">
 						<h1 className="section-title">About</h1>
 						<p>Hi!  I'm Indy, and I like to create unique experiences with code.  I'm currently studying at Whatcom Community College.  Outside of work and class, you can catch me learning and building my projects, hiking with my wife in the beautiful PNW, or escaping with some of my favorite video games.</p>
-						<a href="/resume.pdf">Check out my resume</a>
-						<br />
-						<a href="mailto: isierra2694@gmail.com">Get in touch</a>
+						<div className="about-links">
+							<a href="/resume.pdf">Check out my resume</a>
+							<br />
+							<a href="mailto: isierra2694@gmail.com">Get in touch</a>
+						</div>
 					</div>
 					<div className="about-image">
+						<ShipWireframeImage />
 					</div>
 				</section>
 				<section className="projects-container">
@@ -68,6 +73,7 @@ export default function Home() {
 						</a>
 					</div>
 				</footer>
+				</div>
 			</div>
 		</div>
 	);
