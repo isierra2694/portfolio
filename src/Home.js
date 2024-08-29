@@ -14,7 +14,7 @@ export default function Home() {
 						<h1 className="section-title">About</h1>
 						<p>Hi!  I'm Indy, and I like to create unique experiences with code.  I'm currently studying at Whatcom Community College.  Outside of work and class, you can catch me learning and building my projects, hiking with my wife in the beautiful PNW, or escaping with some of my favorite video games.</p>
 						<div className="about-links">
-							<a href="/resume.pdf">Check out my resume</a>
+							<a target="_blank" rel="noreferrer" href="/resume.pdf">Check out my resume</a>
 							<br />
 							<a href="mailto: isierra2694@gmail.com">Get in touch</a>
 						</div>
@@ -65,11 +65,17 @@ export default function Home() {
 				</section>
 				<footer>
 					<div className="social-links-container">
+						<a target="_blank" rel="noreferrer" href="/resume.pdf">
+							Resume
+						</a>
 						<a target="_blank" rel="noreferrer"href="https://github.com/isierra2694">
 							GitHub
 						</a>
 						<a target="_blank" rel="noreferrer"href="https://www.linkedin.com/in/harrison-sierra-54640826a/">
 							LinkedIn
+						</a>
+						<a href="mailto:isierra2694@gmail.com">
+							Contact
 						</a>
 					</div>
 				</footer>
