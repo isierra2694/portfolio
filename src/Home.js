@@ -31,7 +31,7 @@ export default function Home() {
 						<ProjectCard 
 							title="Emailz" 
 							description="Simple email template manager" 
-							image="/emailz.png"
+							image="/emailz.PNG"
 							link="https://github.com/isierra2694/emailz"
 							badges={emailzBadges}
 						/>
@@ -45,14 +45,14 @@ export default function Home() {
 						<ProjectCard 
 							title="React Timers" 
 							description="Accurate timer web app"
-							image="/react_timers.png" 
+							image="/react_timers.PNG"
 							link="https://isierra2694.github.io/react-timers/"
 							badges={reactTimersBadges}
 						/>
 						<ProjectCard 
 							title="Portfolio" 
 							description="This website"
-							image="/portfolio.png" 
+							image="/portfolio.PNG" 
 							link="https://github.com/isierra2694/portfolio"
 							badges={portfolioBadges}
 						/>
