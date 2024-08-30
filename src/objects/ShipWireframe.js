@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export const ShipWireframe = forwardRef(({ ...props }, ref) => {
-  const { nodes } = useGLTF('/ship.glb')
+  const { nodes } = useGLTF('/models/ship.glb')
   return (
     <group ref={ref} {...props} dispose={null}>
       <group name="Scene">

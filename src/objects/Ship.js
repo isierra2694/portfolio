@@ -5,7 +5,7 @@ import { useGLTF } from '@react-three/drei'
 import Thruster from './Thruster';
 
 export const Ship = forwardRef(({ ...props }, ref) => {
-	const { nodes, materials } = useGLTF('/ship.glb')
+	const { nodes, materials } = useGLTF('/models/ship.glb')
 
 	useFrame(({ clock }) => {
 		const elapsedTime = clock.getElapsedTime();

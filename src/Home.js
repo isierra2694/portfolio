@@ -29,35 +29,35 @@ export default function Home() {
 						<ProjectCard 
 							title="Plainner" 
 							description="All in one plain planning app"
-							image="/plainner.png" 
+							image="/images/plainner.png" 
 							link="https://plainner.com"
 							badges={plainnerBadges}
 						/>
 						<ProjectCard 
 							title="Emailz" 
 							description="Simple email template manager" 
-							image="/emailz.PNG"
+							image="/images/emailz.PNG"
 							link="https://github.com/isierra2694/emailz"
 							badges={emailzBadges}
 						/>
 						<ProjectCard 
 							title="Bible Browser" 
 							description="Handy Bible explorer" 
-							image="/bible_browser.png"
+							image="/images/bible_browser.png"
 							link="https://github.com/isierra2694/bible-browser"
 							badges={bibleBrowserBadges}
 						/>
 						<ProjectCard 
 							title="React Timers" 
 							description="Accurate timer web app"
-							image="/react_timers.PNG"
+							image="/images/react_timers.PNG"
 							link="https://isierra2694.github.io/react-timers/"
 							badges={reactTimersBadges}
 						/>
 						<ProjectCard 
 							title="Portfolio" 
 							description="This website"
-							image="/portfolio.PNG" 
+							image="/images/portfolio.PNG" 
 							link="https://github.com/isierra2694/portfolio"
 							badges={portfolioBadges}
 						/>
