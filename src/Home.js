@@ -1,13 +1,13 @@
 import ProjectCard from './content/ProjectCard';
 import ShipWireframeImage from './content/ShipWireframeImage';
 
-export default function Home() {
+export default function Home({ position }) {
 	return (
 		<div className="wrapper">
 			<div className="home-hero-container">
 				<h1 className="home-hero-name-label">SCROLL DOWN</h1>
 			</div>
-			<div className="main-content-container">
+			<div className="main-content-container" style={{top: `${position}px`}}>
 				<div className="main-content">
 				<section className="about-container">
 					<div className="about-text">

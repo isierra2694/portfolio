@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { useRef, useEffect, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { useScroll, PerspectiveCamera } from '@react-three/drei';
 import FixedScrollHtml from './util/FixedScrollHtml';
 import Home from './Home';
@@ -16,9 +16,12 @@ const Scene = () => {
     const SHIP_SPEED = 5;
 	
 	const scroll = useScroll();
+	const { width, height } = useThree((state) => state.size);
     const ship = useRef(null);
     const camera = useRef(null);
     const skybox = useRef(null);
+
+	const [homePos, setHomePos] = useState(0);
 
 	const [trajectory, setTrajectory] = useState(null);	
 	
@@ -37,6 +40,11 @@ const Scene = () => {
 			new THREE.CubicBezierCurve3(initialCameraPosition, tempA, tempB, finalCameraPosition)
 		);
 	}, []);
+
+	useEffect(() => {
+		console.log((height * scroll.pages - 1) * 0.5)
+		setHomePos((height * scroll.pages - 1) * 0.25);
+	}, [width, height, scroll.pages]);
 
 	useFrame(() => {
         const p1 = scroll.range(0 / 10, 1.5 / 10);
@@ -60,7 +68,7 @@ const Scene = () => {
     return (
         <>
 			<FixedScrollHtml fixedUntil={0.07} style={{width:"100%", height:"100%"}}>
-				<Home />
+				<Home position={homePos} />
 			</FixedScrollHtml>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
 			<SpaceDust count={100} ship={ship} />

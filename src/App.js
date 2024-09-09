@@ -10,14 +10,17 @@ function App() {
 
 	useEffect(() => {
 		const handleResize = () => {
-			const width = window.innerWidth;
+			const idealWidth = 2560;
+			const idealHeight = 1440;
 
-			if (width <= 1100) {
-				setPages(9.5); // Increase pages for mobile view
-	  		} 
-			else {
-				setPages(5);  // Default for desktop view
-	  		}
+			const x = (1 - window.innerWidth / idealWidth);
+			const y = (1 - window.innerHeight / idealHeight);
+		
+			const pagesX = 4.5 + (8.5 - 4.5) * x;
+			const pagesY = 4.5 + (12 - 4.5) * y;
+
+			if (pagesX > pagesY) setPages(pagesX);
+			else setPages(pagesY);
 		};
 
 		handleResize();
