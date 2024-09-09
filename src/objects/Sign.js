@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber';
 import Thruster from './Thruster';
 
 export function Sign(props) {
-	const { nodes, materials } = useGLTF('/sign.glb')
+	const { nodes, materials } = useGLTF('/models/sign.glb')
 	const sign = useRef(null);
 	const lastYPosition = useRef(0);
 	const scroll = useScroll();

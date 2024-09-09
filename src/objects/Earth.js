@@ -2,7 +2,7 @@ import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Earth(props) {
-  const { nodes, materials } = useGLTF('/earth.glb')
+  const { nodes, materials } = useGLTF('/models/earth.glb')
   return (
     <group {...props} dispose={null}>
       <group scale={17.092}>
