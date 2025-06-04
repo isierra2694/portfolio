@@ -71,7 +71,7 @@ const Scene = () => {
 				<Home position={homePos} />
 			</FixedScrollHtml>
 			<PerspectiveCamera ref={camera} makeDefault fov={45}/>
-			<SpaceDust count={100} ship={ship} />
+			<SpaceDust count={50} ship={ship} />
 			<Sign text={SignContents.intro} scrollValue={0.31} position={[250, 0, 0]}/>
 			<Sign text={SignContents.skills} scrollValue={0.41} position={[500, 0, 0]}/>
 			<Ship ref={ship} rotation={[0, 0, 0]} />

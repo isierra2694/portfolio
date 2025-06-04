@@ -53,10 +53,10 @@ export const Ship = forwardRef(({ ...props }, ref) => {
           			geometry={nodes.glass_Cube002_5.geometry}
           			material={materials.orange}
         		/>
-				<Thruster rotation={[0, -Math.PI / 2, 0]} position={[-5.25, 0, 0]} count={200} radius={0.3} speed={100} scale={1} lifetime={100}/>
-      			<Thruster rotation={[0, -Math.PI / 2, 0]} position={[-4.25, 2, 0]} count={100} radius={0.2} speed={100} scale={0.75} lifetime={100}/>
+				<Thruster rotation={[0, -Math.PI / 2, 0]} position={[-5.25, 0, 0]} count={100} radius={0.3} speed={100} scale={1} lifetime={100}/>
+      			<Thruster rotation={[0, -Math.PI / 2, 0]} position={[-4.25, 2, 0]} count={50} radius={0.2} speed={100} scale={0.75} lifetime={100}/>
 
-      			<Thruster rotation={[0, -Math.PI / 2, 0]} position={[-4.25, -2, 0]} count={100} radius={0.2} speed={100} scale={0.75} lifetime={100}/>
+      			<Thruster rotation={[0, -Math.PI / 2, 0]} position={[-4.25, -2, 0]} count={50} radius={0.2} speed={100} scale={0.75} lifetime={100}/>
 			</group>
     	</group>
   	)
