@@ -12,7 +12,7 @@ export default function Home({ position }) {
 				<section className="about-container">
 					<div className="about-text">
 						<h1 className="section-title">About</h1>
-						<p>Hi!  I'm Indy, and I like to create unique experiences with code.  I'm currently studying at Whatcom Community College.  Outside of work and class, you can catch me learning and building my projects, hiking with my wife in the beautiful PNW, or escaping with some of my favorite video games.</p>
+						<p>Hi!  I'm Indy, and I like to create unique experiences with code.  I am currently working as a front-end developer at Logos, the world's leading Bible study software company.  When I'm not at work, you can catch me hiking with my wife in the beautiful PNW, re-reading my favorite books, and playing video games.</p>
 						<div className="about-links">
 							<a target="_blank" rel="noreferrer" href="/resume.pdf">Check out my resume</a>
 							<br />
